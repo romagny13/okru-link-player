@@ -1,6 +1,6 @@
 class OKRuLinkPlayer {
   constructor(options = {}) {
-    this.version = "0.1.1";
+    this.version = "0.1.2";
     this._options = {
       rootContainer: null,
       showPreviewOnHover: false,
@@ -548,6 +548,7 @@ class OKRuLinkPlayer {
     iframe.src = `${embedUrl}?autoplay=1`;
     iframe.allow = "autoplay; fullscreen";
     iframe.allowFullscreen = true;
+    iframe.scrolling = "no";
 
     container.appendChild(closeButton);
     container.appendChild(iframe);
@@ -649,7 +650,8 @@ class OKRuLinkPlayer {
     iframe.src = `${embedUrl}?autoplay=${autoplay ? 1 : 0}&nochat=1`;
     iframe.allow = "autoplay; fullscreen";
     iframe.allowFullscreen = true;
-    
+    iframe.scrolling = "no";
+
     wrapper.appendChild(iframe);
 
     if (targetSelector) {
