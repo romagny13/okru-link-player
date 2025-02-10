@@ -1,6 +1,6 @@
 class OKRuLinkPlayer {
   constructor(options = {}) {
-    this.version = "0.1.0";
+    this.version = "0.1.1";
     this._options = {
       rootContainer: null,
       showPreviewOnHover: false,
@@ -19,6 +19,7 @@ class OKRuLinkPlayer {
       popupWidth: "90vw", // Responsive
       popupHeight: "auto",
       popupMaxWidth: "1200px",
+      embedBaseUrl: options.embedBaseUrl || "https://ok.ru/videoembed/",
       ...options,
     };
 
@@ -82,6 +83,8 @@ class OKRuLinkPlayer {
                     height: 100%;
                     border: none;
                     border-radius: 8px;
+                    overflow: hidden; /* Empêche le défilement interne */
+                    scrollbar-width: none; /* Masque la scrollbar (Firefox) */
                     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
                 }
     
@@ -538,7 +541,7 @@ class OKRuLinkPlayer {
       this._closePopup();
     });
 
-    const embedUrl = `https://ok.ru/videoembed/${videoId}`;
+    const embedUrl = `${this._options.embedBaseUrl}${videoId}`;
 
     const iframe = document.createElement("iframe");
     iframe.className = "okru-popup-iframe";
@@ -640,13 +643,13 @@ class OKRuLinkPlayer {
     const wrapper = document.createElement("div");
     wrapper.className = "okru-player-wrapper";
 
-    const embedUrl = `https://ok.ru/videoembed/${videoId}`;
+    const embedUrl = `${this._options.embedBaseUrl}${videoId}`;
 
     const iframe = document.createElement("iframe");
-    iframe.src = `${embedUrl}?autoplay=${autoplay ? 1 : 0}`;
+    iframe.src = `${embedUrl}?autoplay=${autoplay ? 1 : 0}&nochat=1`;
     iframe.allow = "autoplay; fullscreen";
     iframe.allowFullscreen = true;
-
+    
     wrapper.appendChild(iframe);
 
     if (targetSelector) {
