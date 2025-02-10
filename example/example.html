@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Démo - OK.ru Link Player</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .demo-section {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #666;
+        margin-top: 0;
+      }
+
+      .video-link {
+        display: block;
+        padding: 15px;
+        background: #f8f8f8;
+        border-radius: 4px;
+        color: #333;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+      }
+
+      .video-link:hover {
+        transform: translateY(-2px);
+        background: #eee;
+      }
+
+      .player-target {
+        min-height: 100px;
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        margin-top: 20px;
+        padding: 20px;
+        text-align: center;
+        color: #999;
+      }
+
+      code {
+        display: block;
+        background: #f8f8f8;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>OK.ru Link Player - Démonstration</h1>
+
+    <div class="demo-section">
+      <h2>Vidéos avec lecture inline</h2>
+      <div>
+        <a
+          href="https://ok.ru/video/2211295005311"
+          class="video-link"
+          data-okru-link
+          data-autoplay="true"
+          data-show-in-popup="false"
+          data-thumbnail="https://i.okcdn.ru/i?r=BDFSTM1h2o92P_v-s8DgGlgYU_N6ASLBMQjEJqSyl4M1zCveplwlwouZ66KOYMRhZGY&fn=external_7"
+        >
+          Vidéo 1 (avec autoplay)
+        </a>
+        <a
+          href="https://ok.ru/video/3640583195191"
+          class="video-link"
+          data-okru-link
+        >
+          Vidéo 2
+        </a>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Vidéos avec target spécifique</h2>
+      <div>
+        <a
+          href="https://ok.ru/video/2211295005311"
+          class="video-link"
+          data-okru-link
+          data-okru-target="#target1"
+        >
+          Vidéo 1
+        </a>
+        <a
+          href="https://ok.ru/video/3640583195191"
+          class="video-link"
+          data-okru-link
+          data-okru-target="#target1"
+        >
+          Vidéo 2
+        </a>
+      </div>
+      <div id="target1" class="player-target">Zone cible pour le player</div>
+    </div>
+
+    <script src="../src/okru-link-player.js"></script>
+    <script>
+      new OKRuLinkPlayer({
+        showInPopup: true,
+        showPreviewOnHover: true,
+        tooltipDelay: 500,
+        tooltipMobilePosition: "center",
+      });
+    </script>
+  </body>
+</html>
